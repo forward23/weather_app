@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+            integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+          integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous"/>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 
@@ -14,10 +21,10 @@
 {% if messages %}
     {% for message in messages %}
         <article class="message is-{{ message.tags }}">
-{#            <div class="message-header">#}
-{#                <p>{{ message.tags }}</p>#}
-{#                <button class="delete" aria-label="delete"></button>#}
-{#            </div>#}
+            {#            <div class="message-header">#}
+            {#                <p>{{ message.tags }}</p>#}
+            {#                <button class="delete" aria-label="delete"></button>#}
+            {#            </div>#}
             <div class="message-body">
                 {{ message }}
             </div>
@@ -26,7 +33,13 @@
     </ul>
 {% endif %}
 
+
 {% block content %}
+{% endblock %}
+
+
+{% block scripts %}
+
 {% endblock %}
 
 

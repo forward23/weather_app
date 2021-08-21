@@ -1,0 +1,74 @@
+{% extends '_base.html' %}
+
+
+{% block title %}
+    Forecast
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="title"> {{ city.title }}: forecast for 5 days </h1>
+    <div class="columns">
+        <div class="column is_one_quarter">
+            <canvas id="myChart_temperature" width="100" height="100"></canvas>
+        </div>
+        <div class="column is_one_quarter">
+            <canvas id="myChart_feels_like" width="100" height="100"></canvas>
+        </div>
+
+        <div class="column is_one_quarter">
+            <canvas id="myChart_humidity" width="100" height="100"></canvas>
+        </div>
+        <div class="column  ">
+            <canvas id="myChart_wind" width="100" height="100"></canvas>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            {% for key, value in metrics.items %}
+
+                var ctx = document.getElementById('myChart_{{ key }}').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [ {% for time in labels  %} '{{ time }}', {% endfor %} ],
+                        datasets: [{
+                            label: '{{ key.title }}',
+                            data: [ {% for metric in value  %} {{ metric }}, {% endfor %} ],
+                            backgroundColor: [
+                                {#'rgba(255, 99, 132, 0.2)',#}
+                                {#'rgba(54, 162, 235, 0.2)',#}
+                                {#'rgba(255, 206, 86, 0.2)',#}
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                {#'rgba(255, 99, 132, 1)',#}
+                                {#'rgba(54, 162, 235, 1)',#}
+                                {#'rgba(255, 206, 86, 1)',#}
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            {% endfor %}
+        })
+    </script>
+    <a href="{% url 'home' %}" class="button is-info">Back</a>
+{% endblock %}

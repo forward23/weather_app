@@ -44,7 +44,7 @@
                                 <div class="media-content">
                                     <div class="content">
                                         <p>
-                                            <span class="title">{{ city_weather.city }}</span>
+                                            <span class="title"><a href="{% url 'forecast' city_weather.city %}">{{ city_weather.city.title }}</a></span>
                                             <br>
                                             <span class="subtitle">{{ city_weather.temperature}}</span>
                                             <br> {{ city_weather.description}}
