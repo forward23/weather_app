@@ -1,4 +1,4 @@
-# This is the Weather App, created in Django 3.
+# This is weather forecast app created in Django 3.
 
 You can check the current weather and also get the forecast for 5 days in any city of the world!
 
